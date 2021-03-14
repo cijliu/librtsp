@@ -1,7 +1,7 @@
 PRO_NAME = librtsp.a
 PRO_ROOT = $(shell pwd)
-CC = @gcc
-AR = @ar
+CC = $(CROSS_COMPILE)gcc
+AR = $(CROSS_COMPILE)ar
 INC := -I$(PRO_ROOT)/..
 CFLAGS += $(INC)
 LIB = -lpthread -lrt
@@ -13,11 +13,11 @@ LIB_SRC = \
 	$(SRC_DIR)/h264.c				\
 	$(SRC_DIR)/tcp.c				\
 	$(SRC_DIR)/udp.c				\
-	
+
 obj = $(LIB_SRC:%.c=%.o)
-	
+
 
 all:$(obj)
-	$(AR)  -rcs  $(PRO_NAME) $(obj)  
+	$(AR)  -rcs  $(PRO_NAME) $(obj)
 clean:
-	@rm $(obj)  $(PRO_NAME)
+	@rm $(obj)  $(PRO_NAME) -rf
